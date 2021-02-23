@@ -74,8 +74,9 @@ export class SonosPlatform implements DynamicPlatformPlugin {
             })
             .then(() => {
                 Promise.all(devicePromises).then(() => {
+                    this.log.info('Hello, world!')
                     this.log.info('Got All Devices');
-                    this.log.debug(`Sonos found the following: ${JSON.stringify(foundDevices)}`);
+                    this.log.info(`Sonos found the following: ${JSON.stringify(foundDevices)}`);
                     const removedAccessories = this.accessories.filter((accessory) => foundDevices.indexOf(accessory.UUID) === -1);
                     removedAccessories.forEach((accessory) => this.log.info(`Removing ${accessory.context.device.host}`));
                     this.log.debug(`Now removing the following ${removedAccessories.map((x) => x.UUID)}`);
